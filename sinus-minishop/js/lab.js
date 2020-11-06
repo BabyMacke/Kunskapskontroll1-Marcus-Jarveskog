@@ -32,6 +32,17 @@ function resetAll(){
     // reset art2 text
     let art2P = document.querySelector('.art-2 p')
     art2P.innerText = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione neque sint quaerat consequatur laudantium!"
+
+    // reset menu item
+    let menu = document.querySelector('#header-navigation')
+    let firstMenuItem = document.querySelector('#header-navigation a')
+    let menuItem = document.createElement('a')
+    menuItem.innerText = "Home"
+    if(firstMenuItem.innerText == "Products"){
+        firstMenuItem.insertAdjacentElement('beforebegin', menuItem)
+    }
+    
+    
 }
 
 // sätt event listner på reset knappen
@@ -51,21 +62,22 @@ darkModeBtn.addEventListener('click',
         changeImgArt2();
         redButton();
         changeArt2Text();
+        removeMenuItems();
     }
 );
 
 // byt ut bilden på article 2
 function changeImgArt2(){
     let art2Img = document.querySelector('.art-2 img');
-    art2Img.src = "https://i.pinimg.com/originals/e1/6e/4b/e16e4bdf1c9ee17f1d268b567451d755.png"
-    art2Img.style.width = "60%"
+    art2Img.src = "https://i.pinimg.com/originals/5c/85/0c/5c850c07dbeb97237a1ffa9975c125c6.png"
+    art2Img.style.width = "70%"
 }
 
 
 // byt ut rubriken på article 2
 function changeH2inArt2(){
     let h2 = document.querySelector('.art-2 h2');
-    h2.innerText = "Tokyo Ghoul"
+    h2.innerText = "Dark side"
 }
 
 
@@ -84,5 +96,15 @@ function redButton(){
 // ändra text på art2
 function changeArt2Text(){
     let art2P = document.querySelector('.art-2 p')
-    art2P.innerText = "JA! jag kollar på anime.... låt mig va :("
+    art2P.innerText = "Now you know the power of the dark side!"
+}
+
+// ta bort Home i menyn
+function removeMenuItems(){
+    let menu = document.querySelector('#header-navigation')
+    let menuItem = document.querySelector('#header-navigation a')
+    if(menuItem.innerText == "Home"){
+        menu.removeChild(menuItem);
+    }
+    
 }
