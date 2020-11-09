@@ -1,7 +1,3 @@
-/* 
-btn original color: #222;
-
-*/
 
 
 
@@ -27,10 +23,12 @@ function resetAll(){
     let art2Img = document.querySelector('.art-2 img');
     art2Img.src = "img/hoodie-fire.png"
     art2Img.style.width = "80%"
+    art2Img.style.paddingBottom = "0px"
 
-    // reset middle button färg
+    // reset middle button färg och text
     let middleBtn = document.querySelector('.art-2 button')
     middleBtn.style.backgroundColor = '#222'
+    middleBtn.innerText = "Buy"
 
     // reset art2 text
     let art2P = document.querySelector('.art-2 p')
@@ -68,7 +66,18 @@ function resetAll(){
         <a href="#">Instagram</a>
     </article>
 </section>`
-    
+
+    //reset body och footer
+    let body = document.querySelector('body')
+    body.style.backgroundColor = "#ffffff"
+    footer.style.backgroundColor = ""
+
+    //reset backgrund bakom bilder
+    let figure = document.querySelectorAll('figure')
+    for(i = 0; i < figure.length; i++){
+        figure[i].style.backgroundColor = "rgb(244, 182, 10)";
+       
+    }
     
 }
 
@@ -79,19 +88,20 @@ reset.addEventListener('click', resetAll)
 
 /* här sker ändringar på sidan */
 
-// sätt even listner på första knappen
+// sätt even listner på första knappen(enables darkmode)
 let darkModeBtn = btns[0];
 darkModeBtn.innerText = "Dark"
 darkModeBtn.addEventListener('click', 
     function(e){
-        changeArtToGrey();
+        changeArtToDark();
         redButton();
-        changeArt2Text();
-        removeMenuItems();
+        changeBodyToDark();
+        changeFigureToDark();
+
     }
 );
 
-// event på knappen i mitten för att ta bort footer och lägga till y list
+// event på knappen i mitten för att ta bort footer och lägga till list
 let middleBtn = document.querySelector('.art-2 button');
 middleBtn.addEventListener('click', function(e){
     removeFooterContent();
@@ -102,13 +112,29 @@ middleBtn.addEventListener('click', function(e){
 let middleImg = document.querySelector('.art-2 img');
 middleImg.addEventListener('click', function(e){
     changeImgArt2();
+    
+})
+
+//event på art 2 heading för att ändra texten på art 2 (art2h2 kinda fits the theme im going with, no pun intended)
+let art2h2 = document.querySelector('.art-2 h2');
+art2h2.style.cursor = "pointer"
+art2h2.addEventListener('click', function(e){
     changeH2inArt2();
+    changeArt2Text();
+})
+
+
+//event på shoppingbag för att ta bort home
+let shoppingBag = document.querySelector('nav img');
+shoppingBag.addEventListener('click', function(e){
+    removeMenuItems();
 })
 
 // byt ut bilden på article 2
 function changeImgArt2(){
-    middleImg.src = "https://i.pinimg.com/originals/5c/85/0c/5c850c07dbeb97237a1ffa9975c125c6.png"
-    middleImg.style.width = "70%"
+    middleImg.src = "https://static.wikia.nocookie.net/starwars/images/2/2e/Imperial_Emblem.svg/revision/latest?cb=20080220004323"
+    middleImg.style.width = "80%"
+    middleImg.style.paddingBottom = "18px"
 }
 
 
@@ -119,20 +145,35 @@ function changeH2inArt2(){
 }
 
 
-// function som ändrar mainArticles backgrunds färger till mörkgrå och text färg till vit
-function changeArtToGrey(){
+// function som ändrar mainArticles backgrunds färger till mörkgrå
+function changeArtToDark(){
     let mainArticles = document.querySelectorAll('main article');
     for(i = 0; i < mainArticles.length; i++){
-        mainArticles[i].style.backgroundColor = "red";
-        mainArticles[i].style.color = "#ffffff"
+        mainArticles[i].style.backgroundColor = "#3a3b3b";
     }
-
 }
 
-// ändra färg på knappen i art1
+// gör bakgrund mörk
+function changeBodyToDark(){
+    let body = document.querySelector('body')
+    body.style.backgroundColor = "#4e4f4f"
+    let footer = document.querySelector('footer')
+    footer.style.backgroundColor = "#4a4a4a"
+}
+
+// ändra backgrundfärg bakom bilderna
+function changeFigureToDark(){
+    let figure = document.querySelectorAll('figure')
+    for(i = 0; i < figure.length; i++){
+        figure[i].style.backgroundColor = "#2e2e2e";
+    }
+}
+
+// ändra färg och text på knappen i art1
 function redButton(){
     let middleBtn = document.querySelector('.art-2 button')
-    middleBtn.style.backgroundColor = 'crimson'
+    middleBtn.style.backgroundColor = '#591313'
+    middleBtn.innerText = "Try me"
 }
 
 // ändra text på art2
@@ -157,7 +198,6 @@ function removeFooterContent(){
 }
 
 
-
 //skapa och lägg till en en ny lista på sidan
 function addList(){
     let newList = document.createElement('ul')
@@ -172,8 +212,8 @@ function addList(){
         newList.appendChild(li);
 
         li.style.listStyle = "none";
-        li.style.borderBottom = "solid crimson"
-        li.style.width = "100vw"
+        li.style.borderBottom = "solid #3a3b3b"
+        li.style.width = "80vw"
         li.style.textAlign = "center"
         li.style.color = "white"
     }
